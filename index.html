@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>随机抽奖</title>
+    <title>随机摇号</title>
     <link href="./favicon.ico" rel="shortcut icon">
     <style media="screen">
         *{
@@ -96,7 +96,6 @@
         <p>By molvqingtai@foxmail.com</p>
     </div>
 </body>
-<script src="./names.js" charset="utf-8"></script>
 <script type="text/javascript">
     (() => {
         let number = document.querySelector('#number')
@@ -106,19 +105,18 @@
             let start = false
             let timer = null
             return () => {
-                if (input.value > 0) {
-                    if (!start) {
-                        timer = setInterval(() => {
-                            let randomNumber = Math.floor(Math.random() * (parseInt(input.value) + 1))
-                            number.textContent = randomNumber
-                        }, 100)
-                        button.textContent = '停止'
-                    } else {
-                        clearInterval(timer)
-                        button.textContent = '开始抽奖'
-                    }
-                    start = !start
+                let inputNumber = parseInt(input.value)
+                if (!start && inputNumber > 0) {
+                    timer = setInterval(() => {
+                        let randomNumber = Math.floor(Math.random() * (inputNumber + 1))
+                        number.textContent = randomNumber
+                    }, 100)
+                    button.textContent = '停止'
+                } else {
+                    clearInterval(timer)
+                    button.textContent = '开始抽奖'
                 }
+                start = !start
             }
         })()
         input.addEventListener('input', (e) => {
