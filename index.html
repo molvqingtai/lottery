@@ -24,7 +24,7 @@
             box-shadow: 0 0 10px 0 #CCCCCC;
             border-radius: 3px;
         }
-        .lottery-wrapper h1{
+        .lottery-wrapper .number{
             position: absolute;
             top: 20%;
             left: 50%;
@@ -32,7 +32,31 @@
             text-shadow: 0 5px 5px #CCCCCC;
             color: #ee6e73;
             font-size: 100px;
+
             white-space: nowrap;
+
+        }
+        .lottery-wrapper .input{
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid #444444;
+            padding: 10px;
+            width: 150px;
+            overflow: hidden;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 20px;
+            color: #444444;
+        }
+        .lottery-wrapper .input::-webkit-inner-spin-button{
+            display: none;
         }
         .lottery-wrapper button{
             position: absolute;
@@ -64,7 +88,8 @@
 
 <body>
     <div class="lottery-wrapper">
-        <h1 id="name"></h1>
+        <number id="number" class="number">0</number>
+        <input id="input" class="input" type="number" name="" value="" placeholder="输入抽奖数值">
         <button id="button" type="button" name="button">开始抽奖</button>
     </div>
     <div class="copyright">
@@ -74,31 +99,40 @@
 <script src="./names.js" charset="utf-8"></script>
 <script type="text/javascript">
     (() => {
-        let name = document.querySelector('#name')
+        let number = document.querySelector('#number')
+        let input = document.querySelector('#input')
         let button = document.querySelector('#button')
-
         let lottery = (() => {
             let start = false
             let timer = null
-            name.textContent = list[0]
             return () => {
-                if (!start) {
-                    timer = setInterval(() => {
-                        let index = Math.floor(Math.random() * list.length)
-                        name.textContent = list[index]
-                    }, 100)
-                    button.textContent = '停止'
-                } else {
-                    clearInterval(timer)
-                    button.textContent = '开始抽奖'
+                if (input.value > 0) {
+                    if (!start) {
+                        timer = setInterval(() => {
+                            let randomNumber = Math.floor(Math.random() * (parseInt(input.value) + 1))
+                            number.textContent = randomNumber
+                        }, 100)
+                        button.textContent = '停止'
+                    } else {
+                        clearInterval(timer)
+                        button.textContent = '开始抽奖'
+                    }
+                    start = !start
                 }
-                start = !start
             }
         })()
-
+        input.addEventListener('input', (e) => {
+            if (/^[1-9]\d{0,4}$/.test(input.value)) {
+                number.textContent = input.value
+            } else {
+                number.textContent = 0
+                input.value = ''
+            }
+        })
         button.addEventListener('click', (e) => {
             lottery()
         })
+
     })()
 </script>
 
