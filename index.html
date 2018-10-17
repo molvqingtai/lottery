@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>随机抽奖</title>
+    <link href="./favicon.ico" rel="shortcut icon">
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        .lottery-wrapper{
+            width: 700px;
+            height: 500px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            box-shadow: 0 0 10px 0 #CCCCCC;
+            border-radius: 3px;
+        }
+        .lottery-wrapper h1{
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-shadow: 0 5px 5px #CCCCCC;
+            color: #ee6e73;
+            font-size: 100px;
+            white-space: nowrap;
+        }
+        .lottery-wrapper button{
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 35px;
+            border: none;
+            background-color: #26a69a;
+            color: #FFFFFF;
+            cursor: pointer;
+            border-radius: 3px;
+            outline: none;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+        }
+        .lottery-wrapper button:active{
+            box-shadow: none;
+        }
+        .copyright{
+            position: fixed;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #EEEEEE;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lottery-wrapper">
+        <h1 id="name"></h1>
+        <button id="button" type="button" name="button">开始抽奖</button>
+    </div>
+    <div class="copyright">
+        <p>By molvqingtai@foxmail.com</p>
+    </div>
+</body>
+<script src="./names.js" charset="utf-8"></script>
+<script type="text/javascript">
+    (() => {
+        let name = document.querySelector('#name')
+        let button = document.querySelector('#button')
+
+        let lottery = (() => {
+            let start = false
+            let timer = null
+            name.textContent = list[0]
+            return () => {
+                if (!start) {
+                    timer = setInterval(() => {
+                        let index = Math.floor(Math.random() * list.length)
+                        name.textContent = list[index]
+                    }, 100)
+                    button.textContent = '停止'
+                } else {
+                    clearInterval(timer)
+                    button.textContent = '开始抽奖'
+                }
+                start = !start
+            }
+        })()
+
+        button.addEventListener('click', (e) => {
+            lottery()
+        })
+    })()
+</script>
+
+</html>
