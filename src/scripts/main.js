@@ -7,8 +7,6 @@ const inputRef = document.querySelector('.lottery-setup__input')
 const startButtonRef = document.querySelector('.lottery-action__start-button')
 const restButtonRef = document.querySelector('.lottery-action__rest-button')
 
-let test
-
 const handleStart = () => {
   if (!inputRef.valueAsNumber || inputRef.valueAsNumber <= 1) return
 
@@ -38,3 +36,5 @@ const handleRest = () => {
 
 startButtonRef.addEventListener('click', handleStart)
 restButtonRef.addEventListener('click', handleRest)
+
+let test
