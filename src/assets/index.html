@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let work = {
+      //   calls(a, b) {
+      //     alert(`Called with ${a},${b}`);
+      //     return a + b;
+      //   },
+      // };
+      // function cachingDecorator(func, hash) {
+      //   let cache = new Map();
+      //   return function () {
+      //     let key = hash(arguments);
+      //     if (cache.has(key)) {
+      //       return cache.get(key);
+      //     }
+      //     let result = func.call(this, ...arguments);
+      //     cache.set(key, result);
+      //     return result;
+      //   };
+      // }
+      // function hash(args) {
+      //   return args[0] + args[1];
+      // }
+      // work.calls = cachingDecorator(work.calls, hash);
+
+      // alert(work.calls(1, 1));
+      // alert(work.calls(2, 3));
+      // alert(work.calls(1, 1));
+      // for (let args of work.calls) {
+      //   alert("call:" + args.join());
+      // }
+
+      // function spy(func) {
+      //   function wrapper(...args) {
+      //     wrapper.calls.push(args);
+      //     return func.apply(this, args);
+      //   }
+      //   wrapper.calls = [];
+      //   return wrapper;
+      // }
+      // alert(wrapper.calls(1, 1));
+
+      // function delay(f, ms) {
+      //   return function () {
+      //     setTimeout(() => f.apply(this, arguments), ms);
+      //   };
+      // }
+      // let f1000 = delay(alert, 1000);
+      // f1000("text");
+
+      function debounce(func, ms) {
+        let timeout;
+        return function () {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, arguments), ms);
+        };
+      }
+      let f = debounce(alert, 1000);
+      f("a");
+      setTimeout(() => f("b"), 200);
+      setTimeout(() => f("c"), 500);
+    </script>
+  </body>
+</html>

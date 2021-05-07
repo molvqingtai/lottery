@@ -1,149 +1,31 @@
 <!DOCTYPE html>
-<html lang="zh" dir="ltr">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOTTERY</title>
+    <link rel="stylesheet" href="./src/styles/index.css" />
+  </head>
+  <body>
+    <div class="lottery-warp">
+      <div class="lottery-render">
+        <number class="lottery-render__number">0</number>
+      </div>
+      <div class="lottery-setup">
+        <input
+          placeholder="请输入抽奖范围"
+          class="lottery-setup__input"
+          type="number"
+          oninput="value=value.slice(0,9)"
+        />
+      </div>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>随机摇号</title>
-    <link href="./favicon.ico" rel="shortcut icon">
-    <style media="screen">
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-        }
-
-        .lottery-wrapper{
-            width: 700px;
-            height: 500px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            box-shadow: 0 0 10px 0 #CCCCCC;
-            border-radius: 3px;
-        }
-        .lottery-wrapper .number{
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            text-shadow: 0 5px 5px #CCCCCC;
-            color: #ee6e73;
-            font-size: 150px;
-
-            white-space: nowrap;
-
-        }
-        .lottery-wrapper .input{
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -o-appearance: none;
-            -moz-appearance: textfield;
-            outline: none;
-            border: none;
-            background-color: transparent;
-            border-bottom: 2px solid #444444;
-            padding: 10px;
-            width: 150px;
-            overflow: hidden;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            font-size: 20px;
-            color: #444444;
-            transition: .3s;
-        }
-        .lottery-wrapper .input::-webkit-inner-spin-button{
-            display: none;
-        }
-        .lottery-wrapper .input::-moz-inner-spin-button{
-            display: none;
-        }
-        .lottery-wrapper button{
-            position: absolute;
-            top: 80%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 35px;
-            border: none;
-            background-color: #26a69a;
-            color: #FFFFFF;
-            cursor: pointer;
-            border-radius: 3px;
-            outline: none;
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-        }
-        .lottery-wrapper button:active{
-            box-shadow: none;
-        }
-        .copyright{
-            position: fixed;
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #EEEEEE;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="lottery-wrapper">
-        <number id="number" class="number">0</number>
-        <input id="input" class="input" type="number" name="" value="" placeholder="输入抽奖数值">
-        <button id="button" type="button" name="button">开始抽奖</button>
+      <div class="lottery-action">
+        <button class="lottery-action__start-button">开始抽奖</button>
+        <button class="lottery-action__rest-button iconfont icon-rest"></button>
+      </div>
     </div>
-    <div class="copyright">
-        <p>By molvqingtai@foxmail.com</p>
-    </div>
-</body>
-<script type="text/javascript">
-    (() => {
-        let number = document.querySelector('#number')
-        let input = document.querySelector('#input')
-        let button = document.querySelector('#button')
-        let lottery = (() => {
-            let start = false
-            let timer = null
-            return () => {
-                let inputNumber = parseInt(input.value)
-                if (inputNumber > 0) {
-                    if (!start) {
-                        timer = setInterval(() => {
-                            let randomNumber = Math.floor(Math.random() * (inputNumber + 1))
-                            number.textContent = randomNumber
-                        }, 100)
-                        button.textContent = '停止'
-                        input.setAttribute('disabled', 'disabled')
-                        input.style.opacity = '0.3'
-                    } else {
-                        clearInterval(timer)
-                        button.textContent = '开始抽奖'
-                        input.removeAttribute('disabled')
-                        input.style.opacity = '1.0'
-                    }
-                    start = !start
-                }
-            }
-        })()
-        input.addEventListener('input', (e) => {
-            if (/^[1-9]\d{0,4}$/.test(input.value)) {
-                number.textContent = input.value
-            } else {
-                number.textContent = 0
-                input.value = ''
-            }
-        })
-        button.addEventListener('click', (e) => {
-            lottery()
-        })
-
-    })()
-</script>
-
+  </body>
+  <script src="./src/scripts/main.js" type="module"></script>
 </html>

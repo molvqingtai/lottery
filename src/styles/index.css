@@ -1,0 +1,109 @@
+@import "../assets/fonts/iconfont.css";
+
+body {
+  background-color: whitesmoke;
+  font-family: sans-serif;
+}
+
+.lottery-warp {
+  width: 700px;
+  height: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 0 0 10px 1px #dddddd;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lottery-render {
+  font-size: 100px;
+  color: #ee6e73;
+  text-shadow: 0 5px 5px #cccccc;
+}
+
+.lottery-setup__input {
+  font-size: 18px;
+  width: 130px;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 2px solid #666666;
+  user-select: none;
+  background-color: transparent;
+  transition: 0.3s;
+  color: #666666;
+}
+
+.lottery-setup__input::placeholder {
+  color: #999999;
+  font-size: 16px;
+}
+.lottery-setup__input::-webkit-inner-spin-button {
+  display: none;
+}
+.lottery-setup__input[disabled] {
+  color: #dddddd;
+  border-color: #dddddd;
+  cursor: no-drop;
+}
+
+.lottery-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lottery-action__start-button {
+  border: none;
+  background-color: #26a69a;
+  color: white;
+  padding: 10px 15px;
+  width: 130px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 10px 1px #cecece;
+  transition: 0.3s;
+}
+.lottery-action__start-button:active {
+  background-color: #179487;
+  transition: none;
+}
+
+.lottery-action__start-button[disabled] {
+  background-color: #ee6e73;
+  color: #ffffff;
+  box-shadow: none;
+  cursor: default;
+}
+
+.lottery-action__rest-button {
+  margin-top: 30px;
+  cursor: pointer;
+  font-size: 35px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #ffb938;
+  text-shadow: 0 2px 2px #cccccc;
+  transition: 0.3s;
+}
+
+.lottery-action__rest-button:active {
+  transition: none;
+  color: #ffc862;
+  text-shadow: 0 1px 2px #cccccc;
+}
+.lottery-action__rest-button[disabled] {
+  color: #ffe4b1;
+  text-shadow: none;
+  cursor: no-drop;
+}
