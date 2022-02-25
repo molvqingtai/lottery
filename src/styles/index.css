@@ -1,4 +1,4 @@
-@import "../assets/fonts/iconfont.css";
+@import '../assets/fonts/iconfont.css';
 
 body {
   background-color: whitesmoke;
@@ -39,7 +39,7 @@ body {
   border-bottom: 2px solid #666666;
   user-select: none;
   background-color: transparent;
-  transition: 0.3s;
+  transition: 0.1s;
   color: #666666;
 }
 
@@ -71,7 +71,7 @@ body {
   cursor: pointer;
   outline: none;
   box-shadow: 0 0 10px 1px #cecece;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 .lottery-action__start-button:active {
   background-color: #179487;
@@ -82,28 +82,5 @@ body {
   background-color: #ee6e73;
   color: #ffffff;
   box-shadow: none;
-  cursor: default;
-}
-
-.lottery-action__rest-button {
-  margin-top: 30px;
-  cursor: pointer;
-  font-size: 35px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: #ffb938;
-  text-shadow: 0 2px 2px #cccccc;
-  transition: 0.3s;
-}
-
-.lottery-action__rest-button:active {
-  transition: none;
-  color: #ffc862;
-  text-shadow: 0 1px 2px #cccccc;
-}
-.lottery-action__rest-button[disabled] {
-  color: #ffe4b1;
-  text-shadow: none;
   cursor: no-drop;
 }
